@@ -280,6 +280,7 @@ footer {          /* D영역: 와이어프레임 하단영역 */
 .login-container {
   display: flex;
   margin-right: 30px;
+  font-weight: bold;
 }
 
 .login-container .separator {
