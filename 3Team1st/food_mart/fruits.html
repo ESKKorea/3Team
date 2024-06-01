@@ -1,14 +1,74 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>알뜰식자재몰</title>
-  
+  <meta charset="utf-8">
+  <title>Fruits</title>
+  <link href="css/style.css" type="text/css" rel="stylesheet">
+  <style>
+    .product-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between; /* Adjusted justify-content */
+    }
+    .product {
+      text-align: center;
+      margin: 20px;
+      width: calc(33.33% - 40px); /* Adjusted width to fit 3 items per row */
+    }
+    .product img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product-name {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .product-price {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h1>과일</h1>
-
+  <h1>Fruit Juice</h1>
+  <div class="product-container">
+    <div class="product">
+      <img src="images/strawberry.jpg" alt="딸기">
+      <div class="product-name">딸기</div>
+      <div class="product-price">4500원</div>
+      <input type="checkbox" name="fruit" value="딸기"> 선택
+    </div>
+    <div class="product">
+      <img src="images/lime.jpg" alt="라임">
+      <div class="product-name">라임</div>
+      <div class="product-price">4000원</div>
+      <input type="checkbox" name="fruit" value="라임"> 선택
+    </div>
+    <div class="product">
+      <img src="images/mango.jpg" alt="망고">
+      <div class="product-name">망고</div>
+      <div class="product-price">5000원</div>
+      <input type="checkbox" name="fruit" value="망고"> 선택
+    </div>
+    <div class="product">
+      <img src="images/watermelon.jpg" alt="수박">
+      <div class="product-name">수박</div>
+      <div class="product-price">10000원</div>
+      <input type="checkbox" name="fruit" value="레몬"> 선택
+    </div>
+    <div class="product">
+      <img src="images/coconut.jpg" alt="코코넛">
+      <div class="product-name">코코넛</div>
+      <div class="product-price">8000원</div>
+      <input type="checkbox" name="fruit" value="무화과"> 선택
+    </div>
+    <div class="product">
+      <img src="images/apple.jpg" alt="사과">
+      <div class="product-name">사과</div>
+      <div class="product-price">7000원</div>
+      <input type="checkbox" name="fruit" value="사과"> 선택
+    </div>
+  </div>
 </body>
 </html>
-
