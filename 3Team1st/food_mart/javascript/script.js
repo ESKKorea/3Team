@@ -25,10 +25,14 @@ jQuery(document).ready(function() {
   });
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
   // JSON 파일을 불러와 팝업으로 표시하는 함수
   function loadNotice(noticeFile) {
+    // 기존 팝업이 있는지 확인
+    if (document.querySelector('.popup')) {
+      return; // 팝업이 이미 있으면 함수 종료
+    }
+
     fetch(noticeFile)
       .then(response => {
         if (!response.ok) {
