@@ -6,6 +6,44 @@
   <link href="css/style.css" type="text/css" rel="stylesheet">
   <script src="javascript/jquery-1.12.3.js"></script>
   <script src="javascript/script.js" defer type="text/javascript"></script>
+  <style>
+    /* 팝업 스타일 */
+    .popup {
+      display: none; 
+      position: fixed; 
+      z-index: 1; 
+      left: 0; 
+      top: 0; 
+      width: 100%; 
+      height: 100%; 
+      overflow: auto; 
+      background-color: rgb(0,0,0); 
+      background-color: rgba(0,0,0,0.4); 
+    }
+
+    .popup-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <!--와이어프레임 왼쪽 시작-->
@@ -19,11 +57,11 @@
         <ul class="navi">
           <li><a href="#">과일/채소</a>
             <ul class="submenu">
-               <li><a href="fruits.html">과일</a></li>
-
-              <li><a href="#">채소</a></li>
+              <li><a href="#">감자/고구마</a></li>
               <li><a href="#">버섯 종류</a></li>
-              
+              <li><a href="#">나물 종류</a></li>
+              <li><a href="#">냉장과일</a></li>
+              <li><a href="#">냉동과일</a></li>
             </ul>
           </li>
           <li><a href="#">축산</a>
@@ -48,13 +86,12 @@
               <li><a href="#">치즈</a></li>
             </ul>
           </li>          
-          <li><a href="#">할인상품</a>
+          <li><a href="#" id="discount-link">할인상품</a>
             <ul class="submenu">
               <li><a href="#">일회용품</a></li>
               <li><a href="#">과자류</a></li>
             </ul>
           </li>
-          
         </ul>
       </nav>
     </div>
@@ -62,19 +99,6 @@
   <!--와이어프레임 왼쪽 끝-->
 
   <!--와이어프레임 오른쪽 시작-->
-  <div class="header-container">
-    <div class="login-container">
-      <a href="login.html" class="login-link">로그인</a>
-      <span class="separator">|</span>
-      <a href="signup.html" class="signup-link">회원가입</a>
-      <span class="separator">|</span>
-      <a href="mypage.html" class="mypage-link">마이페이지</a>
-      <span class="separator">|</span>
-      <a href="order_delivery.html" class="order-link">주문/배송</a>
-      <span class="separator">|</span>
-      <a href="cart.html" class="cart-link">장바구니</a>
-  </div>
-  </div>
   <div class="imgslide">
     <div class="slidelist">
       <ul>
@@ -183,34 +207,71 @@
     </div>
   </div> <!-- 레이어 팝업창 영역 끝 -->
 
+  <!-- 할인상품 팝업 시작 -->
+<div id="discount-popup" class="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup('discount-popup')">&times;</span>
+    <h2><center>할인상품 안내</center></h2>
+    <br>
+    <h3>일회용품</h3>
+    <ul id="disposable-items">
+      <li>
+        <img src="images/plastic.jpg" alt="일회용품 이미지" width="500px" height="auto">
+      </li>
+      <!-- 기타 일회용품 항목 추가 -->
+    </ul>
+    <h3>과자류</h3>
+      <ul id="snack-items">
+        <li>
+          <a href="https://smartstore.naver.com/cookieall/products/5476714471" target="_blank">
+            <img src="images/snack.jpg" alt="과자류 이미지" width="500px" height="auto">
+          </a>
+        </li>
+    <h3>육류</h3>
+    <ul id="meat-items">
+      <li>
+        <img src="images/meat.png" alt="육류 이미지" width="500px" height="auto">
+      </li>
+      <!-- 기타 육류 항목 추가 -->
+    </ul>
+    <h3>면류</h3>
+    <ul id="noodle-items">
+      <li>
+        <img src="images/noodle.png" alt="면류 이미지"  width="500px" height="auto">
+      </li>
+      <!-- 기타 면류 항목 추가 -->
+    </ul>
+  </div>
+</div>
+<!-- 할인상품 팝업 끝 -->
+
+
+
   <!--와이어프레임 하단 시작-->
-  <footer class="footer">
+  <footer>
     <div class="bottom"> <!--bottom: 하단메뉴 + Copyright-->
-        <div class="btmenu">
-            <ul>
-                <li><a href="#">이용약관</a></li> 
-                <li><a href="#">개인정보 처리방침</a></li> 
-                <li><a href="#">고객지원</a></li> 
-                <li><a href="#">회사 소개</a></li> 
-                <li><a href="#">문의하기</a></li> 
-                <li class="familysite">
-                    <select name="sitelist">
-                        <option value="#">패밀리사이트1</option>
-                        <option value="#">패밀리사이트2</option>
-                        <option value="#">패밀리사이트3</option>
-                        <option value="#">패밀리사이트4</option>
-                        <option value="#">패밀리사이트5</option>
-                    </select>
-                </li>
-            </ul>
-        </div>
-        <div class="copy">
-            COPYRIGHTⓒ by WEBDESIGN. ALL RIGHTS RESERVED
-        </div>
+      <div class="btmenu">
+        <ul>
+          <li><a href="#">하단메뉴1</a></li> 
+          <li><a href="#">하단메뉴2</a></li> 
+          <li><a href="#">하단메뉴3</a></li> 
+          <li><a href="#">하단메뉴4</a></li> 
+          <li><a href="#">하단메뉴5</a></li> 
+          <li><a href="#">하단메뉴6</a></li>
+        </ul>
+      </div>
+      <div class="copy">
+        COPYRIGHTⓒ by WEBDESIGN. ALL RIGHTS RESERVED
+      </div>
     </div>
-</footer>
+    <div class="familysite">
+      <select name="sitelist">
+        <option value="#">패밀리사이트1</option>
+        <option value="#">패밀리사이트2</option>
+        <option value="#">패밀리사이트3</option>
+      </select>
+    </div>
+  </footer>
   <!--와이어프레임 하단 끝-->
 </body>
 </html>
-
-<!--되는지 테스트중입니다. -by kyh 06010229-->
