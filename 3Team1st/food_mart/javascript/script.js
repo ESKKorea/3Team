@@ -77,3 +77,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+document.addEventListener2("DOMContentLoaded", function() {
+  // 할인상품 링크 클릭 시 팝업 열기
+  document.getElementById("discount-link").addEventListener("click", function(event) {
+    event.preventDefault();
+    openPopup("discount-popup");
+  });
+});
+
+function openPopup(popupId) {
+  var popup = document.getElementById(popupId);
+  if (popup) {
+    popup.style.display = "block";
+  }
+}
+
+function closePopup(popupId) {
+  var popup = document.getElementById(popupId);
+  if (popup) {
+    popup.style.display = "none";
+  }
+}
