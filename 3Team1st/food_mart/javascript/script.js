@@ -67,35 +67,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  // 공지사항 클릭 이벤트 리스너 추가
-  const noticeLinks = document.querySelectorAll('.notice-link');
-  noticeLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-      event.preventDefault(); // 기본 동작 방지
-      const noticeFile = link.getAttribute('data-notice');
-      loadNotice(noticeFile);
-    });
-  });
+  // '반갑습니다, 고객님' 문구를 클릭했을 때 handleLoginClick 함수 실행
+  loginLink.addEventListener('click', handleLoginClick);
 });
 
-document.addEventListener2("DOMContentLoaded", function() {
-  // 할인상품 링크 클릭 시 팝업 열기
-  document.getElementById("discount-link").addEventListener("click", function(event) {
-    event.preventDefault();
-    openPopup("discount-popup");
-  });
-});
+const menu_fru = document.querySelector('#menu_fru');
 
-function openPopup(popupId) {
-  var popup = document.getElementById(popupId);
-  if (popup) {
-    popup.style.display = "block";
-  }
+const lists = [
+  {
+    name: '딸기',
+    img: 'strawberry.jpg',
+    price: 4500,
+  },
+  {
+    name: '라임',
+    img: 'lime.jpg',
+    price: 4000,
+  },
+  {
+    name: '망고',
+    img: 'mango.jpg',
+    price: 5000,
+  },
+  {
+    name: '레몬',
+    img: 'lemon.jpg',
+    price: 4000,
+  },
+  {
+    name: '무화과',
+    img: 'fig.jpg',
+    price: 5000,
+  },
+  {
+    name: '사과',
+    img: 'apple.jpg',
+    price: 4000,
+  },
+];
+
+for(let i = 0; i < lists.length; i++){
+  const {name, img, price} = lists[i];
+  const content = `<div><img src="images/${img}" alt=""><h2>${name}</h2><p>${price}원</p></div>`;
+  menu_fru.insertAdjacentHTML('beforeend', content);
 }
 
-function closePopup(popupId) {
-  var popup = document.getElementById(popupId);
-  if (popup) {
-    popup.style.display = "none";
-  }
-}
