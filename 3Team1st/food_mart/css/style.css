@@ -272,19 +272,6 @@ footer {          /* D영역: 와이어프레임 하단영역 */
   height: 120px;
   width: 80%;     /* btmenu+copy 영역을 너비의 80%로 지정 */
 }
-.header-container {
-  float: right;
-  font-size: 14px;
-  margin : 7px;
-}
-.login-container {
-  display: flex;
-  margin-right: 30px;
-}
-
-.login-container .separator {
-  margin: 0 20px; /* 막대 사이 간격 조절 */
-}
 .btmenu {
   float: left;
   width: 100%;
@@ -332,3 +319,11 @@ footer {          /* D영역: 와이어프레임 하단영역 */
   margin-top: 45px;
   margin-right: 100px;
 }
+h3{
+  text-align: center;
+}
+.popup{
+  text-align: center;
+  margin: 0;
+}
+
