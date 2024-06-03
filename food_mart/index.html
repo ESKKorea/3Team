@@ -8,30 +8,6 @@
   <script src="javascript/script.js" defer type="text/javascript"></script>
   <style>
     /* 팝업 스타일 */
-    .popup {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgb(195, 191, 191);
-      padding: 10px;
-      box-shadow: 0 0 10px rgba(227, 222, 222, 0.1);
-      z-index: 1000;
-      border-radius: 10px;
-    }
-    .popup-content {
-      text-align: center;
-    }
-    .popup-content button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      float: right;
-      font-weight: bold;
-
-}
-
-
-    
   </style>
 </head>
 <body>
@@ -47,8 +23,11 @@
           <li><a href="#">과일/채소</a>
             <ul class="submenu">
               <li><a href="fruits.html">과일</a></li>
-              <li><a href="#">채소</a></li>
+              <li><a href="#">감자/고구마</a></li>
               <li><a href="#">버섯 종류</a></li>
+              <li><a href="#">나물 종류</a></li>
+              <li><a href="#">냉장과일</a></li>
+              <li><a href="#">냉동과일</a></li>
             </ul>
           </li>
           <li><a href="#">축산</a>
@@ -73,7 +52,7 @@
               <li><a href="#">치즈</a></li>
             </ul>
           </li>          
-          <li><a href="#">할인상품</a>
+          <li><a href="#" id="discount-link">할인상품</a>
             <ul class="submenu">
               <li><a href="#">일회용품</a></li>
               <li><a href="#">과자류</a></li>
@@ -194,6 +173,45 @@
   </div>
   <!--bodywrap 끝-->
   <!--와이어프레임 오른쪽 끝-->
+
+  <!-- 할인상품 팝업 시작 -->
+  <div id="discount-popup" class="popup-sale">
+    <div class="popup-sale-content">
+      <span class="close" onclick="closeDiscountPopup('discount-popup')">&times;</span>
+      <h2><center>할인상품 안내</center></h2>
+      <br>
+      <h3>일회용품</h3>
+      <ul id="disposable-items">
+        <li>
+          <img src="images/plastic.jpg" alt="일회용품 이미지" width="500px" height="auto">
+        </li>
+        <!-- 기타 일회용품 항목 추가 -->
+      </ul>
+      <h3>과자류</h3>
+      <ul id="snack-items">
+        <li>
+          <a href="https://smartstore.naver.com/cookieall/products/5476714471" target="_blank">
+            <img src="images/snack.jpg" alt="과자류 이미지" width="500px" height="auto">
+          </a>
+        </li>
+        <h3>육류</h3>
+        <ul id="meat-items">
+          <li>
+            <img src="images/meat.png" alt="육류 이미지" width="500px" height="auto">
+          </li>
+          <!-- 기타 육류 항목 추가 -->
+        </ul>
+        <h3>면류</h3>
+        <ul id="noodle-items">
+          <li>
+            <img src="images/noodle.png" alt="면류 이미지" width="500px" height="auto">
+          </li>
+          <!-- 기타 면류 항목 추가 -->
+        </ul>
+      </ul>
+    </div>
+  </div>
+  <!-- 할인상품 팝업 끝 -->
 
   <!--와이어프레임 하단 시작-->
   <footer class="footer">
