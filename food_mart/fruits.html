@@ -1,14 +1,264 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>알뜰식자재몰</title>
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>과일|알뜰식자재</title>
+  <style>
+    body {
+      font-family: "Nanum Brush Script", cursive;
+      font-style: normal;
+    }
+    #product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0 20px;
+    }
+    .product-item {
+      width: calc(20% - 40px);
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 20px;
+      box-sizing: border-box;
+      margin-top: 50px;
+      position: relative;
+    }
+    .product-item img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      border: 5px solid #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .product-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .product-buttons button {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+      margin: 0 5px;
+    }
+    .product-buttons button.add-to-cart {
+      background-color: #4CAF50;
+      color: white;
+      margin-right: 10px;
+    }
+    .product-buttons button.buy-now {
+      background-color: #008CBA;
+      color: white;
+    }
+    #cart-container {
+      position: fixed;
+      top : 400px;
+      right: 16px;
+      background-color: #0056b3;
+      color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+      border: 5px solid #fff;
+      border-radius: 10px;
+      cursor: pointer; /* 포인터 커서 추가 */
+    }
+    #total-price {
+      margin-top: 10px;
+      font-size: 30px;
+    }
+    .cart-checkbox {
+      margin-right: 3px;
+      font-size: 10px;
+    }
+    .cart-text {
+      font-size: 14px;
+    }
+    .cart-item {
+      margin-bottom: 3px;
+      align-content: center;
+      font-size: 20px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #333;
+    }
+    h1 {
+      font-size: 100px;
+    }
+    h2 {
+      margin-top: 200px;
+    }
+    h3 {
+      font-size: 30px;
+      font-family: sans-serif;
+    }
+    #fruit-corner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      text-align: center;
+      z-index: 10;
+    }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: none;
+    }
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .popup h2 {
+      text-align: center;
+    }
+    .popup p {
+      text-align: center;
+    }
+    .popup button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      border-radius: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>과일</h1>
+  <div id="fruit-corner">
+    <h1>과일 코너</h1>
+  </div>
+  <div id="product-list"></div>
+  <div id="cart-container">
+    <h3>장바구니 List</h3>
+    <div id="cart-items"></div>
+    <div id="total-price"></div>
+  </div>
+  <div class="overlay" id="payment-overlay">
+    <div class="popup">
+      <h2>결제창</h2>
+      <p>결제 정보를 입력하세요.</p>
+      <button onclick="closePaymentPopup()">닫기</button>
+    </div>
+  </div>
+  <script>
+    let total = 0;
 
+    fetch('fruits.json')
+      .then(response => response.json())
+      .then(data => {
+        const productList = document.getElementById('product-list');
+        data.products.forEach(product => {
+          const productItem = document.createElement('div');
+          productItem.classList.add('product-item');
+          const title = document.createElement('h2');
+          title.textContent = product.title;
+          title.style.fontSize = '50px';
+          productItem.appendChild(title);
+          const image = document.createElement('img');
+          image.src = `images/${product.photo}`;
+          image.alt = product.title;
+          productItem.appendChild(image);
+          
+          const from = document.createElement('p');
+          from.style.fontSize = '33px';
+          from.textContent = `From: ${product.from}`;
+          productItem.appendChild(from);
+
+          const price = document.createElement('p');
+          price.style.fontSize = '33px';
+          price.textContent = `Price: ${product.price}`;
+          productItem.appendChild(price);
+
+          const addToCartButton = document.createElement('button');
+          addToCartButton.classList.add('add-to-cart');
+          addToCartButton.textContent = '장바구니';
+          addToCartButton.setAttribute('data-id', product.id);
+          addToCartButton.setAttribute('data-name', product.title);
+          addToCartButton.setAttribute('data-price', product.price);
+          addToCartButton.addEventListener('click', () => {
+            addToCart(product.id, product.title, product.price);
+          });
+          productItem.appendChild(addToCartButton);
+          productList.appendChild(productItem);
+
+          const buyNowButton = document.createElement('button');
+          buyNowButton.classList.add('buy-now');
+          buyNowButton.textContent = '바로구매';
+          buyNowButton.setAttribute('data-price', product.price);
+          buyNowButton.addEventListener('click', () => {
+            total += parseFloat(product.price);
+            updateTotal();
+            openPaymentPopup();
+          });
+          productItem.appendChild(buyNowButton);
+        });
+      })
+      .catch(error => console.error('Error fetching products:', error));
+
+function updateTotal() {
+  document.getElementById('total-price').textContent = `총 합계: ${total}원`;
+}
+     
+
+
+    function addToCart(id, name, price) {
+      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cartItems.find(item => item.id === id);
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        cartItems.push({ id, name, price, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartContainer = document.getElementById('cart-items');
+      cartContainer.innerHTML = '';
+      cartItems.forEach(item => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.textContent = `${item.name} (가격: ${item.price}, 수량: ${item.quantity})`;
+        cartContainer.appendChild(cartItem);
+      });
+    }
+
+    function openPaymentPopup() {
+      document.getElementById('payment-overlay').style.display = 'block';
+    }
+
+    function closePaymentPopup() {
+      document.getElementById('payment-overlay').style.display = 'none';
+    }
+
+    document.getElementById('cart-container').addEventListener('click', () => {
+      window.location.href = 'cart.html';
+    });
+  </script>
 </body>
 </html>
-
