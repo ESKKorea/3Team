@@ -332,3 +332,22 @@ footer {          /* D영역: 와이어프레임 하단영역 */
   margin-top: 45px;
   margin-right: 100px;
 }
+
+ /* 팝업 스타일 */
+ .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+.popup-content {
+  text-align: center;
+}
+.popup-content button {
+  margin-top: 20px;
+  padding: 10px 20px;
+}
